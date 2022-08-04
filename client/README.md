@@ -13,3 +13,8 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+**Related links**
+https://dashboard.alchemyapi.io/apps/y3y17f73u7gjhpn6
+https://goerli.etherscan.io/
+https://goerlifaucet.com/
