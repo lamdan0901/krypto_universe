@@ -3,7 +3,7 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Wrapper, LogoWrapper, Logo, Navigators, NavigatorItem, LoginBtn, SideNavigationBar, SideNavigators, CloseSideNavigationBtn } from "./Navbar.styled";
 
-import logo from "../../images/logo.png";
+import logo from "../../../images/logo.png";
 
 const NavBarItem = ({ title, classProps }) => (
   <NavigatorItem className={`${classProps}`}>{title}</NavigatorItem>
