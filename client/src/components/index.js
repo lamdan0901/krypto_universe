@@ -4,4 +4,4 @@ export { default as Footer } from "./Footer/Footer";
 export { default as Services } from "./Services/Services";
 // eslint-disable-next-line import/no-cycle
 export { default as Welcome } from "./Welcome";
-export { default as Transactions } from "./Transactions";
+export { default as Transactions } from "./Transactions/Transactions";
