@@ -3,9 +3,10 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
-import { TransactionContext } from "../context/TransactionContext";
-import { shortenAddress } from "../utils/shortenAddress";
-import { Loader } from ".";
+import { TransactionContext } from "../../context/TransactionContext";
+import { shortenAddress } from "../../utils/shortenAddress";
+import { Loader } from "..";
+import { Wrapper, Container, ConnectBtnText, LeftSide, ConnectBtn, Heading, LeftSideText } from "./Welcome.styled";
 
 const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -34,27 +35,26 @@ const Welcome = () => {
   };
 
   return (
-    <div className="flex w-full justify-center items-center">
-      <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-        <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
-          <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
+    <Wrapper>
+      <Container>
+        <LeftSide>
+          <Heading className="text-gradient">
             Send Crypto <br /> across the world
-          </h1>
-          <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
+          </Heading>
+          <LeftSideText>
             Explore the crypto world. Buy and sell cryptocurrencies easily on Krypto.
-          </p>
+          </LeftSideText>
 
           {!currentAccount && (
-            <button
+            <ConnectBtn
               type="button"
               onClick={connectWallet}
-              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
             >
-              <AiFillPlayCircle className="text-white mr-2" />
-              <p className="text-white text-base font-semibold">
+              <AiFillPlayCircle style={{ color: "#fff", marginRight: "0.5rem" }} />
+              <ConnectBtnText>
                 Connect Wallet
-              </p>
-            </button>
+              </ConnectBtnText>
+            </ConnectBtn>
           )}
 
           <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
@@ -73,7 +73,7 @@ const Welcome = () => {
               Blockchain
             </div>
           </div>
-        </div>
+        </LeftSide>
 
         <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
           <div className="p-3 flex justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card .white-glassmorphism ">
@@ -115,8 +115,8 @@ const Welcome = () => {
               )}
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Wrapper>
   );
 };
 
