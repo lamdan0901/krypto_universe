@@ -1,13 +1,7 @@
-import { React } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar, Footer } from "./components";
-import {
-  Cryptocurrencies,
-  CryptoDetails,
-  News,
-  Home,
-} from "./pages";
+import { Cryptocurrencies, CryptoDetails, News, Home } from "./pages";
 import store from "./app/store";
 
 // import "antd/dist/antd.css";
@@ -23,10 +17,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route
             path="/cryptocurrencies"
-            element={<Cryptocurrencies />}
+            element={<Cryptocurrencies simplified={false} />}
           />
           <Route path="/crypto/:coinId" element={<CryptoDetails />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/news" element={<News simplified={false} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

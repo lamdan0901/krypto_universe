@@ -1,4 +1,3 @@
-import React from "react";
 import { LeftSide } from "./LeftSide";
 import { RightSide } from "./RightSide";
 import { Wrapper, Container } from "./Welcome.styled";

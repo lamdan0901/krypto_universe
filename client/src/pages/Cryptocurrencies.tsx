@@ -7,7 +7,11 @@ import millify from "millify";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
-const Cryptocurrencies = ({ simplified }) => {
+interface CryptocurrenciesProps {
+  simplified: boolean;
+}
+
+const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const count = simplified ? 10 : 100;
   const { data: cryptoList, isFetching, isError } = useGetCryptosQuery(count);
   // eslint-disable-next-line no-use-before-define
@@ -23,8 +27,10 @@ const Cryptocurrencies = ({ simplified }) => {
     }
   }, [searchTerm, cryptoList?.data?.coins]);
 
-  function handleSearchCryptos(searchText) {
-    const filteredData = cryptoList?.data?.coins.filter((item) => item.name.toLowerCase().includes(searchText));
+  function handleSearchCryptos(searchText: string) {
+    const filteredData = cryptoList?.data?.coins.filter((item) =>
+      item.name.toLowerCase().includes(searchText)
+    );
 
     setCryptos(filteredData);
   }

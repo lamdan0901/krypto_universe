@@ -12,7 +12,11 @@ const demoImage =
 const { Text, Title } = Typography;
 const { Option } = Select;
 
-const News = ({ simplified }) => {
+interface NewsProps {
+  simplified: boolean;
+}
+
+const News = ({ simplified }: NewsProps) => {
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
   const { data: cryptoList } = useGetCryptosQuery(100);
   const { data: cryptoNews } = useGetCryptoNewsQuery({
@@ -25,20 +29,22 @@ const News = ({ simplified }) => {
   return (
     <div className="gradient-bg-welcome huge-space">
       {!simplified && (
-      <div className="search-crypto">
-        <Select
-          className="select-news"
-          placeholder="Select a Crypto"
-          onChange={(value) => setNewsCategory(value)}
-        >
-          <Option value="Cryptocurrency" className="crypto-option">Cryptocurrency</Option>
-          {cryptoList?.data?.coins?.map((currency, i) => (
-            <Option value={currency.name} className="crypto-option" key={i}>
-              {currency.name}
+        <div className="search-crypto">
+          <Select
+            className="select-news"
+            placeholder="Select a Crypto"
+            onChange={(value) => setNewsCategory(value)}
+          >
+            <Option value="Cryptocurrency" className="crypto-option">
+              Cryptocurrency
             </Option>
-          ))}
-        </Select>
-      </div>
+            {cryptoList?.data?.coins?.map((currency, i: number) => (
+              <Option value={currency.name} className="crypto-option" key={i}>
+                {currency.name}
+              </Option>
+            ))}
+          </Select>
+        </div>
       )}
 
       <Row gutter={[24, 24]}>
@@ -52,7 +58,7 @@ const News = ({ simplified }) => {
                   </Title>
                   <img
                     className="news-img"
-                  // if the image doesn't show up, it means some feature of the api is temporarily unavailable for some reasons
+                    // if the image doesn't show up, it means some feature of the api is temporarily unavailable for some reasons
                     src={news?.image?.thumbnail?.contentUrl || demoImage}
                     alt="news"
                   />
@@ -68,9 +74,9 @@ const News = ({ simplified }) => {
                   <div>
                     <Avatar
                       src={
-                      news.provider[0]?.image?.thumbnail?.contentUrl ||
-                      demoImage
-                    }
+                        news.provider[0]?.image?.thumbnail?.contentUrl ||
+                        demoImage
+                      }
                       alt="provider"
                     />
                     <Text className="provider-name">
@@ -86,7 +92,6 @@ const News = ({ simplified }) => {
           </Col>
         ))}
       </Row>
-
     </div>
   );
 };
