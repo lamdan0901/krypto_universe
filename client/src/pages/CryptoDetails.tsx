@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import { Col, Row, Typography, Select } from "antd";
@@ -20,6 +19,8 @@ import {
   // useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
 import Loader from "./Loader";
+import CryptoPriceChart from "../components/CryptoPriceChart";
+import { useState } from "react";
 // import LineChart from "./LineChart";
 
 const { Title, Text } = Typography;
@@ -27,12 +28,12 @@ const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  // const [timePeriod, setTimePeriod] = useState("7d");
+  const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-  // const { data: coinHistory } = useGetCryptoHistoryQuery({
-  //   coinId,
-  //   timePeriod,
-  // });
+  const { data: coinHistory } = useGetCryptoHistoryQuery({
+    coinId,
+    timePeriod,
+  });
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return <Loader />;
@@ -119,11 +120,9 @@ const CryptoDetails = () => {
         </p>
       </Col>
 
-      <div
-        className="select-time-period"
-      >
+      <div className="select-time-period">
         <Select
-          className="select-news"
+          className="select-element"
           defaultValue="7d"
           placeholder="Select Time Period"
           onChange={(value) => setTimePeriod(value)}
@@ -134,11 +133,11 @@ const CryptoDetails = () => {
         </Select>
       </div>
 
-      {/* <LineChart
+      <CryptoPriceChart
         coinHistory={coinHistory}
         currentPrice={millify(cryptoDetails?.price)}
         coinName={cryptoDetails?.name}
-      /> */}
+      />
 
       <Col className="stats-container">
         <Col className="coin-value-statistics">
@@ -199,10 +198,11 @@ const CryptoDetails = () => {
             {cryptoDetails.name} Links
           </Title>
 
-          {cryptoDetails.links?.map((link, i) => (
+          {cryptoDetails.links?.map((link: any, i: number) => (
             <Row className="coin-link" key={i}>
               <Title level={5} className="link-name">
                 {link.type}
+                {console.log(link)}
               </Title>
               <a href={link.url} target="_blank" rel="noreferrer">
                 {link.name}

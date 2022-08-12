@@ -26,6 +26,8 @@ const News = ({ simplified }: NewsProps) => {
 
   if (!cryptoNews?.value) return <Loader />;
 
+  console.log(cryptoNews?.value);
+
   return (
     <div className="gradient-bg-welcome huge-space">
       {!simplified && (
@@ -38,8 +40,9 @@ const News = ({ simplified }: NewsProps) => {
             <Option value="Cryptocurrency" className="crypto-option">
               Cryptocurrency
             </Option>
-            {cryptoList?.data?.coins?.map((currency, i: number) => (
+            {cryptoList?.data?.coins?.map((currency: any, i: number) => (
               <Option value={currency.name} className="crypto-option" key={i}>
+                {console.log(currency)}
                 {currency.name}
               </Option>
             ))}
@@ -48,7 +51,7 @@ const News = ({ simplified }: NewsProps) => {
       )}
 
       <Row gutter={[24, 24]}>
-        {cryptoNews?.value?.map((news, i) => (
+        {cryptoNews?.value?.map((news: any, i: number) => (
           <Col xs={24} sm={12} lg={8} key={i}>
             <Card hoverable className="news-card gradient-bg-welcome">
               <a href={news.url} target="_blank" rel="noreferrer">
@@ -84,6 +87,7 @@ const News = ({ simplified }: NewsProps) => {
                     </Text>
                   </div>
                   <Text className="provider-time">
+                    {/*@ts-ignore */}
                     {moment(news.datePublished).startOf("ss").fromNow()}
                   </Text>
                 </div>

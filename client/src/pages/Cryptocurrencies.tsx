@@ -16,19 +16,20 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const { data: cryptoList, isFetching, isError } = useGetCryptosQuery(count);
   // eslint-disable-next-line no-use-before-define
   const debouncedSearch = useDebouncedCallback(handleSearchCryptos, 500);
-  const [cryptos, setCryptos] = useState();
+  const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     if (searchTerm !== "") {
       debouncedSearch(searchTerm);
     } else {
+      console.log(cryptoList?.data?.coins);
       setCryptos(cryptoList?.data?.coins);
     }
   }, [searchTerm, cryptoList?.data?.coins]);
 
   function handleSearchCryptos(searchText: string) {
-    const filteredData = cryptoList?.data?.coins.filter((item) =>
+    const filteredData = cryptoList?.data?.coins.filter((item: any) =>
       item.name.toLowerCase().includes(searchText)
     );
 
@@ -59,7 +60,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
       {/* we can provide one more option to display data in table or grid,
                  do pagination for this page */}
       <Row gutter={[32, 32]} className="crypto-card-container">
-        {cryptos?.map((currency) => (
+        {cryptos?.map((currency: any) => (
           <Col
             xs={24}
             sm={12}
