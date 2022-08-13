@@ -26,15 +26,6 @@ ChartJS.register(
   ...registerables
 );
 
-// interface ChartConfig {
-//   // disabledChart?: boolean;
-//   title: string;
-//   labels: string[];
-//   chartData: number[];
-//   displayLegend?: boolean;
-//   tension?: number;
-// }
-
 interface CryptoPriceChartProps {
   coinName: string;
   coinHistory: any;
@@ -47,14 +38,6 @@ const CryptoPriceChart = ({
   coinName,
 }: CryptoPriceChartProps) => {
   const chartRef = useRef<ChartJS>(null);
-  // const {
-  //   title,
-  //   labels,
-  //   chartData,
-  //   // disabledChart,
-  //   displayLegend = false,
-  //   tension,
-  // } = config;
 
   const coinPrice: any = [];
   const coinTimestamp: any = [];
@@ -65,7 +48,9 @@ const CryptoPriceChart = ({
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinTimestamp.push(
-      new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString()
+      new Date(
+        coinHistory?.data?.history[i].timestamp * 1000
+      ).toLocaleDateString()
     );
   }
 
@@ -75,8 +60,10 @@ const CryptoPriceChart = ({
 
   const createGradient = (ctx: CanvasRenderingContext2D, area: ChartArea) => {
     const gradient = ctx.createLinearGradient(0, area.top, 0, area.bottom);
-    gradient?.addColorStop(0.25, "rgba(108, 90, 238, 0.75)");
-    gradient?.addColorStop(0.9, "rgba(255, 255, 255, 0)");
+    gradient?.addColorStop(0.25, "rgba(120, 118, 136, 0.712)");
+    gradient?.addColorStop(0.4, "rgba(255, 255, 255, 0.3)");
+    gradient?.addColorStop(0.7, "rgba(255, 255, 255, 0.2)");
+    gradient?.addColorStop(0.9, "rgba(255, 255, 255, 0.1)");
     return gradient;
   };
 
@@ -86,8 +73,7 @@ const CryptoPriceChart = ({
         display: false,
       },
       title: {
-        display: true,
-        text: "title",
+        display: false,
       },
     },
   };
@@ -99,18 +85,15 @@ const CryptoPriceChart = ({
       return;
     }
 
-    // chart.canvas.style.opacity = disabledChart ? "0.25" : "1";
-    // chart.canvas.style.pointerEvents = disabledChart ? "none" : "auto";
-
     const data = {
       labels: coinTimestamp,
       datasets: [
         {
           label: "",
           data: coinPrice,
-          borderColor: "#6c5aee",
+          borderColor: "#1917c0",
           backgroundColor: createGradient(chart.ctx, chart.chartArea),
-          tension: 0.4,
+          tension: 0.5,
           fill: true,
         },
       ],
@@ -122,11 +105,9 @@ const CryptoPriceChart = ({
 
   return (
     <>
-      <p>{coinName}</p>
+      <p>{coinName} Price Chart</p>
       <p>{coinHistory?.data?.change}%</p>
-      <p>
-        Current {coinName} Price: $ {currentPrice}
-      </p>
+      <p>Current Price: $ {currentPrice}</p>
       <Chart type="line" options={options} data={ChartData} ref={chartRef} />
     </>
   );

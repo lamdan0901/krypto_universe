@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IconProps {
+  bgColor: string
+}
+
 export const Wrapper = styled.div`
   display: flex;
   padding: 0.75rem;
@@ -14,7 +18,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Icon = styled.div`
+export const Icon = styled.div<IconProps>`
   background-color: ${({ bgColor }) => bgColor};
   border-radius: 99px;
   justify-content: center;

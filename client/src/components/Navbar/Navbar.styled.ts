@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  flex: 0.5;
+  flex: 0.3;
   display: flex;
   align-items: center;
   justify-content: center;

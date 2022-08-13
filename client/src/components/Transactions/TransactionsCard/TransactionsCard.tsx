@@ -19,7 +19,7 @@ interface TransactionsCardProps {
   addressFrom: string;
   timestamp: string;
   message?: string;
-  keyword: string;
+  keyword?: string;
   amount: string;
   url: string;
 }
@@ -82,7 +82,8 @@ export const TransactionsCard = ({
         <img
           src={gifUrl || url}
           alt="gif img"
-          className="w-full h-64 2xl:h-96 rounded-md shadow-lg object-cover"
+          className="h-64 2xl:h-96 rounded-md shadow-lg object-cover"
+          style={{ width: "80%", height: "80%" }}
         />
 
         <TimestampWrapper>

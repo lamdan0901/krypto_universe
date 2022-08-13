@@ -34,7 +34,7 @@ export const LeftSide = () => {
 
       <Properties>
         <Property className="rounded-tl-2xl">Reliability</Property>
-        <Property>Security</Property>
+        <Property>Fast & Security</Property>
         <Property className="sm:rounded-tr-2xl">Ethereum</Property>
         <Property className="sm:rounded-bl-2xl">Web 3.0</Property>
         <Property>Low Fees</Property>

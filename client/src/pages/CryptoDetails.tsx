@@ -16,12 +16,11 @@ import {
 
 import {
   useGetCryptoDetailsQuery,
-  // useGetCryptoHistoryQuery,
+  useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
 import Loader from "./Loader";
 import CryptoPriceChart from "../components/CryptoPriceChart";
 import { useState } from "react";
-// import LineChart from "./LineChart";
 
 const { Title, Text } = Typography;
 const { Option } = Select;

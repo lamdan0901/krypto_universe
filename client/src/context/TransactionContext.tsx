@@ -5,7 +5,21 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
 
-export const TransactionContext = React.createContext(null);
+export const TransactionContext = React.createContext({
+  transactionCount: 0,
+  connectWallet: () => {},
+  transactions: [],
+  currentAccount: "",
+  isLoading: false,
+  sendTransaction: () => {},
+  handleChange: (e: any, name: string) => {},
+  formData: {
+    addressTo: "",
+    amount: "",
+    keyword: "",
+    message: "",
+  },
+});
 
 // metamask extension provide us the ethereum object access from window
 // @ts-ignore
@@ -37,7 +51,7 @@ export const TransactionsProvider = ({ children }: any) => {
   );
   const [transactions, setTransactions] = useState([]);
 
-  const handleChange = (e, name) => {
+  const handleChange = (e: any, name: string) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
@@ -50,7 +64,7 @@ export const TransactionsProvider = ({ children }: any) => {
           await transactionsContract.getAllTransactions();
 
         const structuredTransactions = availableTransactions.map(
-          (transaction) => ({
+          (transaction: any) => ({
             addressTo: transaction.receiver,
             addressFrom: transaction.sender,
             timestamp: new Date(
