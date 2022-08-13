@@ -4,7 +4,6 @@ import { Navbar, Footer } from "./components";
 import { Cryptocurrencies, CryptoDetails, News, Home } from "./pages";
 import store from "./app/store";
 
-// import "antd/dist/antd.css";
 import "antd/dist/antd.dark.css";
 import "./App.css";
 

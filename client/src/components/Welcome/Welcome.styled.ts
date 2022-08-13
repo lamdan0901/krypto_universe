@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   padding: 3rem 1rem;
+  max-width: 1366px;
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;

@@ -20,7 +20,7 @@ const Footer = () => (
 
     <ContactInfo>
       <ContactText>
-        Come join us and hear for the unexpected miracle
+        Create transaction, see cryptocurrencies's news, prices and many more...
       </ContactText>
       <ContactEmail>info@kryptouniverse.com</ContactEmail>
     </ContactInfo>

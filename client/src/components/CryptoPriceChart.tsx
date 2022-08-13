@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Chart } from "react-chartjs-2";
+import { Col, Row, Typography } from "antd";
 import type { ChartData, ChartArea } from "chart.js";
 import {
   Chart as ChartJS,
@@ -7,21 +8,19 @@ import {
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
-  Legend,
   Filler,
   registerables,
 } from "chart.js";
+
+const { Title } = Typography;
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Title,
   Tooltip,
-  Legend,
   Filler,
   ...registerables
 );
@@ -60,10 +59,10 @@ const CryptoPriceChart = ({
 
   const createGradient = (ctx: CanvasRenderingContext2D, area: ChartArea) => {
     const gradient = ctx.createLinearGradient(0, area.top, 0, area.bottom);
-    gradient?.addColorStop(0.25, "rgba(120, 118, 136, 0.712)");
-    gradient?.addColorStop(0.4, "rgba(255, 255, 255, 0.3)");
-    gradient?.addColorStop(0.7, "rgba(255, 255, 255, 0.2)");
-    gradient?.addColorStop(0.9, "rgba(255, 255, 255, 0.1)");
+    gradient?.addColorStop(0.25, "rgba(144, 41, 63, 0.7)");
+    gradient?.addColorStop(0.4, "rgba(176, 76, 76, 0.4)");
+    gradient?.addColorStop(0.7, "rgba(201, 91, 91, 0.35)");
+    gradient?.addColorStop(0.9, "rgba(195, 102, 102, 0.2)");
     return gradient;
   };
 
@@ -86,12 +85,12 @@ const CryptoPriceChart = ({
     }
 
     const data = {
-      labels: coinTimestamp,
+      labels: coinTimestamp.reverse(),
       datasets: [
         {
           label: "",
-          data: coinPrice,
-          borderColor: "#1917c0",
+          data: coinPrice.reverse(),
+          borderColor: "#c01739",
           backgroundColor: createGradient(chart.ctx, chart.chartArea),
           tension: 0.5,
           fill: true,
@@ -105,9 +104,19 @@ const CryptoPriceChart = ({
 
   return (
     <>
-      <p>{coinName} Price Chart</p>
-      <p>{coinHistory?.data?.change}%</p>
-      <p>Current Price: $ {currentPrice}</p>
+      <Row className="chart-header">
+        <Title level={3} className="chart-title">
+          {coinName} Price Chart
+        </Title>
+        <Col className="price-container">
+          <Title level={5} className="price-change">
+            Change: {coinHistory?.data?.change}%
+          </Title>
+          <Title level={5} style={{ marginTop: "0px" }}>
+            Current Price: $ {currentPrice}
+          </Title>
+        </Col>
+      </Row>
       <Chart type="line" options={options} data={ChartData} ref={chartRef} />
     </>
   );
