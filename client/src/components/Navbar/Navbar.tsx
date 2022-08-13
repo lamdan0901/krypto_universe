@@ -8,6 +8,7 @@ import {
   CloseSideNavigationBtn,
   LoginBtn,
   Logo,
+  LogoText,
   LogoWrapper,
   NavigatorItem,
   Navigators,
@@ -35,6 +36,7 @@ const Navbar = () => {
     <Wrapper className="gradient-bg-navbar">
       <LogoWrapper>
         <Logo src={ether_logo} alt="logo" style={{ width: "50px" }} />
+        <LogoText>KryptoUniverse</LogoText>
       </LogoWrapper>
 
       <Navigators>

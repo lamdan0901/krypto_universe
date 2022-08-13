@@ -6,7 +6,7 @@ import { useGetCryptosQuery } from "../services/cryptoApi";
 import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 import Loader from "./Loader";
 
-const demoImage =
+const thumbImage =
   "https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News";
 
 const { Text, Title } = Typography;
@@ -62,7 +62,7 @@ const News = ({ simplified }: NewsProps) => {
                   <img
                     className="news-img"
                     // if the image doesn't show up, it means some feature of the api is temporarily unavailable for some reasons
-                    src={news?.image?.thumbnail?.contentUrl || demoImage}
+                    src={news?.image?.thumbnail?.contentUrl || thumbImage}
                     alt="news"
                   />
                 </div>
@@ -78,7 +78,7 @@ const News = ({ simplified }: NewsProps) => {
                     <Avatar
                       src={
                         news.provider[0]?.image?.thumbnail?.contentUrl ||
-                        demoImage
+                        thumbImage
                       }
                       alt="provider"
                     />

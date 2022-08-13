@@ -10,6 +10,7 @@ import {
   TimestampWrapper,
   WalletInfo,
   Wrapper,
+  GifImg,
 } from "./TransactionsCard.styled";
 
 const GIPHY_API_KEY = import.meta.env.VITE_GIPHY_API;
@@ -79,12 +80,7 @@ export const TransactionsCard = ({
           )}
         </WalletInfo>
 
-        <img
-          src={gifUrl || url}
-          alt="gif img"
-          className="h-64 2xl:h-96 rounded-md shadow-lg object-cover"
-          style={{ width: "80%", height: "80%" }}
-        />
+        <GifImg src={gifUrl || url} alt="gif img" />
 
         <TimestampWrapper>
           <Timestamp>{timestamp}</Timestamp>

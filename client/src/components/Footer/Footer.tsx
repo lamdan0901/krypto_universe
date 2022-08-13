@@ -1,4 +1,4 @@
-import { LogoWrapper, Logo } from "../Navbar/Navbar.styled";
+import { LogoWrapper, Logo, LogoText } from "../Navbar/Navbar.styled";
 import {
   Wrapper,
   ContactInfo,
@@ -14,7 +14,8 @@ import ether_logo from "../../../images/ether_logo.png";
 const Footer = () => (
   <Wrapper className="gradient-bg-footer">
     <LogoWrapper>
-      <Logo src={ether_logo} alt="logo" style={{ width: "50px" }} />
+      <Logo src={ether_logo} alt="logo" style={{ width: "40px" }} />
+      <LogoText>KryptoUniverse</LogoText>
     </LogoWrapper>
 
     <ContactInfo>

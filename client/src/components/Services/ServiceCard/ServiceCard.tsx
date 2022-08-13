@@ -10,7 +10,7 @@ import {
 interface ServiceCardProps {
   bgColor: string;
   title: string;
-  icon: string;
+  icon: React.ReactNode;
   subtitle: string;
 }
 

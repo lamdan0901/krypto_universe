@@ -9,15 +9,24 @@ export const Wrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  flex: 0.3;
+  flex: 0.4;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const Logo = styled.img`
   width: 8rem;
-  cursor: pointer;
+  position: relative;
+    top: -4px;
+`;
+
+export const LogoText = styled.h1`
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  margin-left: 10px;
+    color: #fff;
 `;
 
 export const Navigators = styled.ul`
