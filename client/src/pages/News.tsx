@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 import Loader from "./Loader";
+import { Currency } from "./Cryptocurrencies";
 
 const thumbImage =
   "https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
+
+interface CryptoNews {
+  url: string;
+  name: string;
+  description: string;
+  image?: any;
+  provider: any[];
+  datePublished: string;
+}
 
 interface NewsProps {
   simplified: boolean;
@@ -40,9 +50,8 @@ const News = ({ simplified }: NewsProps) => {
             <Option value="Cryptocurrency" className="crypto-option">
               Cryptocurrency
             </Option>
-            {cryptoList?.data?.coins?.map((currency: any, i: number) => (
+            {cryptoList?.data?.coins?.map((currency: Currency, i: number) => (
               <Option value={currency.name} className="crypto-option" key={i}>
-                {console.log(currency)}
                 {currency.name}
               </Option>
             ))}
@@ -51,7 +60,7 @@ const News = ({ simplified }: NewsProps) => {
       )}
 
       <Row gutter={[24, 24]}>
-        {cryptoNews?.value?.map((news: any, i: number) => (
+        {cryptoNews?.value?.map((news: CryptoNews, i: number) => (
           <Col xs={24} sm={12} lg={8} key={i}>
             <Card hoverable className="news-card gradient-bg-welcome">
               <a href={news.url} target="_blank" rel="noreferrer">

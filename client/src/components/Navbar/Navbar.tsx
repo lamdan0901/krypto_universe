@@ -17,7 +17,15 @@ import {
   Wrapper,
 } from "./Navbar.styled";
 
-const NavBarItem = ({ item, classProps }: any) => (
+interface NavBarItemProps {
+  item: {
+    path: string;
+    title: string;
+  };
+  classProps?: string;
+}
+
+const NavBarItem = ({ item, classProps }: NavBarItemProps) => (
   <Link to={item.path}>
     <NavigatorItem className={`${classProps}`}>{item.title}</NavigatorItem>
   </Link>

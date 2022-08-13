@@ -25,6 +25,12 @@ import { useState } from "react";
 const { Title, Text } = Typography;
 const { Option } = Select;
 
+interface CryptoLink {
+  url: string;
+  type: string;
+  name: string;
+}
+
 const CryptoDetails = () => {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState("7d");
@@ -197,11 +203,10 @@ const CryptoDetails = () => {
             {cryptoDetails.name} Links
           </Title>
 
-          {cryptoDetails.links?.map((link: any, i: number) => (
+          {cryptoDetails.links?.map((link: CryptoLink, i: number) => (
             <Row className="coin-link" key={i}>
               <Title level={5} className="link-name">
                 {link.type}
-                {console.log(link)}
               </Title>
               <a href={link.url} target="_blank" rel="noreferrer">
                 {link.name}

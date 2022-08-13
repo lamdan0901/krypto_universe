@@ -7,6 +7,15 @@ import millify from "millify";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
+export interface Currency {
+  uuid: string;
+  name: string;
+  iconUrl: string;
+  rank: string;
+  price: number;
+  marketCap: number;
+  change: string;
+}
 interface CryptocurrenciesProps {
   simplified: boolean;
 }
@@ -23,13 +32,12 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
     if (searchTerm !== "") {
       debouncedSearch(searchTerm);
     } else {
-      console.log(cryptoList?.data?.coins);
       setCryptos(cryptoList?.data?.coins);
     }
   }, [searchTerm, cryptoList?.data?.coins]);
 
   function handleSearchCryptos(searchText: string) {
-    const filteredData = cryptoList?.data?.coins.filter((item: any) =>
+    const filteredData = cryptoList?.data?.coins.filter((item: Currency) =>
       item.name.toLowerCase().includes(searchText)
     );
 
@@ -60,7 +68,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
       {/* we can provide one more option to display data in table or grid,
                  do pagination for this page */}
       <Row gutter={[32, 32]} className="crypto-card-container">
-        {cryptos?.map((currency: any) => (
+        {cryptos?.map((currency: Currency) => (
           <Col
             xs={24}
             sm={12}
