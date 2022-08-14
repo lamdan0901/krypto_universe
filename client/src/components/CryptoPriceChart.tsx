@@ -112,7 +112,7 @@ const CryptoPriceChart = ({
             Change: {coinHistory?.data?.change}%
           </Title>
           <Title level={5} style={{ marginTop: "0px" }}>
-            Current Price: $ {currentPrice}
+            Current Price: ${currentPrice}
           </Title>
         </Col>
       </Row>

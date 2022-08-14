@@ -19,14 +19,14 @@ export const LogoWrapper = styled.div`
 export const Logo = styled.img`
   width: 8rem;
   position: relative;
-    top: -4px;
+  top: -4px;
 `;
 
 export const LogoText = styled.h1`
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-size: 20px;
   margin-left: 10px;
-    color: #fff;
+  color: #fff;
 `;
 
 export const Navigators = styled.ul`
@@ -43,26 +43,14 @@ export const Navigators = styled.ul`
 `;
 
 export const NavigatorItem = styled.li`
-  color: #ddd;
+  color: #ccc;
   cursor: pointer;
   margin-left: 1rem;
   margin-right: 1rem;
+  font-size: 18px;
 
   &:hover {
     color: #fff;
-  }
-`;
-
-export const LoginBtn = styled.button`
-  background-color: #2952e3;
-  color: #fff;
-  padding: 0.5rem 1.75rem;
-  border-radius: 99px;
-  margin-left: 1rem;
-  margin-right: 1rem;
-
-  &:hover {
-    background-color: #2546bd;
   }
 `;
 

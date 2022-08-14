@@ -40,7 +40,7 @@ export const Text = styled.p`
 
 export const ConnectBtn = styled.button`
   padding: 0.75rem;
-  background-color: rgb(41, 82, 227);
+  background-color: rgba(41, 81, 227, 0.647);
   border-radius: 99px;
   justify-content: center;
   align-items: center;
@@ -51,7 +51,7 @@ export const ConnectBtn = styled.button`
   margin-bottom: 1.25rem;
 
   &:hover {
-    background-color: rgb(37, 70, 189);
+    background-color: rgba(37, 70, 189, 0.642);
   }
 `;
 

@@ -28,6 +28,9 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage] = useState(10);
+
   useEffect(() => {
     if (searchTerm !== "") {
       debouncedSearch(searchTerm);
@@ -43,6 +46,16 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
 
     setCryptos(filteredData);
   }
+
+  //https://github.com/bradtraversy/simple_react_pagination/blob/master/src/App.js
+
+  // Get current posts
+  const indexOfLastPost = currentPage * cardsPerPage;
+  const indexOfFirstPost = indexOfLastPost - cardsPerPage;
+  const currentCryptos = cryptos?.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (isFetching) return <Loader />;
   if (isError) {
@@ -66,8 +79,6 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
           </div>
         )}
 
-        {/* we can provide one more option to display data in table or grid,
-                 do pagination for this page */}
         <Row gutter={[32, 32]} className="crypto-card-container">
           {cryptos?.map((currency: Currency) => (
             <Col

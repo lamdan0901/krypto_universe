@@ -10,6 +10,14 @@
   box-sizing: border-box;
 }
 
+a:hover {
+  color: #fff;
+}
+
+.active-link {
+  color: #fff;
+}
+
 .loader {
   height: 81vh;
   display: flex;
@@ -289,6 +297,10 @@
 .ant-table {
   background: rgba(31, 28, 47, 0.468) !important;
   border-radius: 10px;
+}
+
+.active-link {
+  color: #fff;
 }
 
 .ant-table-thead > tr > th {

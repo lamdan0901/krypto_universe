@@ -1,12 +1,11 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { HiMenuAlt4 } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import ether_logo from "../../../images/ether_logo.png";
 import {
   CloseSideNavigationBtn,
-  LoginBtn,
   Logo,
   LogoText,
   LogoWrapper,
@@ -26,9 +25,14 @@ interface NavBarItemProps {
 }
 
 const NavBarItem = ({ item, classProps }: NavBarItemProps) => (
-  <Link to={item.path}>
-    <NavigatorItem className={`${classProps}`}>{item.title}</NavigatorItem>
-  </Link>
+  <NavigatorItem className={`${classProps}`}>
+    <NavLink
+      to={item.path}
+      className={({ isActive }) => (isActive ? "active-link" : "")}
+    >
+      {item.title}
+    </NavLink>
+  </NavigatorItem>
 );
 
 export const navItems = [
@@ -51,7 +55,6 @@ const Navbar = () => {
         {navItems.map((item, index) => (
           <NavBarItem key={index} item={item} />
         ))}
-        <LoginBtn>Login</LoginBtn>
       </Navigators>
 
       <SideNavigationBar>
