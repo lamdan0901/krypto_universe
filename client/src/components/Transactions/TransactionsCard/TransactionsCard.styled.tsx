@@ -56,13 +56,6 @@ export const TimestampWrapper = styled.div`
   margin-top: -1.25rem;
 `;
 
-export const GifImg = styled.img`
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-  border-radius: 0.375rem;
-`
-
 export const Timestamp = styled.p`
   color: #37c7da;
   font-weight: bold;

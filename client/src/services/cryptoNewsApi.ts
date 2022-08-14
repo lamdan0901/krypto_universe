@@ -3,9 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const cryptoNewsHeaders = {
   "x-bingapis-sdk": "true",
   "x-rapidapi-key": import.meta.env.VITE_APP_RAPIDAPI_KEY,
-  // 'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
   "x-rapidapi-host": import.meta.env.VITE_APP_NEWS_RAPIDAPI_HOST,
-  // 'x-rapidapi-host': process.env.REACT_APP_NEWS_RAPIDAPI_HOST,
 };
 
 const createRequest = (url: string) => ({ url, headers: cryptoNewsHeaders });

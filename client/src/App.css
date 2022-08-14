@@ -286,6 +286,19 @@
   width: 157px !important;
 }
 
+.ant-table {
+  background: rgba(31, 28, 47, 0.468) !important;
+  border-radius: 10px;
+}
+
+.ant-table-thead > tr > th {
+  background: rgba(44, 41, 57, 0.562) !important;
+}
+
+.ant-table-cell-row-hover {
+  background: rgba(49, 44, 88, 0.558) !important;
+}
+
 .ant-select-single .ant-select-selector .ant-select-selection-item,
 .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
   line-height: 34px !important;

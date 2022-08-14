@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <Wrapper className="gradient-bg-navbar">
       <LogoWrapper>
-        <Logo src={ether_logo} alt="logo" style={{ width: "50px" }} />
+        <Logo src={ether_logo} alt="logo" style={{ width: "40px" }} />
         <LogoText>KryptoUniverse</LogoText>
       </LogoWrapper>
 

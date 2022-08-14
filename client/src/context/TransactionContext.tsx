@@ -12,11 +12,10 @@ export const TransactionContext = React.createContext({
   currentAccount: "",
   isLoading: false,
   sendTransaction: () => {},
-  handleChange: (e: any, name: string) => {},
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>, name: string) => {},
   formData: {
     addressTo: "",
     amount: "",
-    keyword: "",
     message: "",
   },
 });
@@ -51,7 +50,10 @@ export const TransactionsProvider = ({ children }: any) => {
   );
   const [transactions, setTransactions] = useState([]);
 
-  const handleChange = (e: any, name: string) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
@@ -202,7 +204,6 @@ export const TransactionsProvider = ({ children }: any) => {
       formData,
     }),
     [formData, currentAccount, isLoading, transactionCount, transactions]
-    // []
   );
 
   return (

@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 1rem;
   width: 100%;
 `;
 
 export const LogoWrapper = styled.div`
-  flex: 0.4;
+  flex: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;
