@@ -99,8 +99,7 @@ const CryptoPriceChart = ({
     };
 
     setChartData(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chartRef.current]);
+  }, [chartRef.current, coinHistory?.data?.history]);
 
   return (
     <>
