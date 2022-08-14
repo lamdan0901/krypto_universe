@@ -8,6 +8,7 @@ import {
   CloseSideNavigationBtn,
   LoginBtn,
   Logo,
+  LogoText,
   LogoWrapper,
   NavigatorItem,
   Navigators,
@@ -16,7 +17,15 @@ import {
   Wrapper,
 } from "./Navbar.styled";
 
-const NavBarItem = ({ item, classProps }: any) => (
+interface NavBarItemProps {
+  item: {
+    path: string;
+    title: string;
+  };
+  classProps?: string;
+}
+
+const NavBarItem = ({ item, classProps }: NavBarItemProps) => (
   <Link to={item.path}>
     <NavigatorItem className={`${classProps}`}>{item.title}</NavigatorItem>
   </Link>
@@ -34,7 +43,8 @@ const Navbar = () => {
   return (
     <Wrapper className="gradient-bg-navbar">
       <LogoWrapper>
-        <Logo src={ether_logo} alt="logo" style={{ width: "50px" }} />
+        <Logo src={ether_logo} alt="logo" style={{ width: "40px" }} />
+        <LogoText>KryptoUniverse</LogoText>
       </LogoWrapper>
 
       <Navigators>

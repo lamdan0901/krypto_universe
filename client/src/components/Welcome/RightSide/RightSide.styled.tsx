@@ -27,7 +27,7 @@ export const AccountInfoWrapper = styled.div`
   border-radius: 0.75rem;
 
   @media (min-width: 640px) {
-    width: 18rem;
+    width: 21.5rem;
   }
 `;
 
@@ -109,4 +109,8 @@ export const SendBtn = styled.button`
   cursor: pointer;
   width: 100%;
   margin-top: 0.5rem;
+
+  &:hover{
+    background-color: #3d4f7c;
+  }
 `;

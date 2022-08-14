@@ -7,6 +7,15 @@ import millify from "millify";
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
+export interface Currency {
+  uuid: string;
+  name: string;
+  iconUrl: string;
+  rank: string;
+  price: number;
+  marketCap: number;
+  change: string;
+}
 interface CryptocurrenciesProps {
   simplified: boolean;
 }
@@ -23,13 +32,12 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
     if (searchTerm !== "") {
       debouncedSearch(searchTerm);
     } else {
-      console.log(cryptoList?.data?.coins);
       setCryptos(cryptoList?.data?.coins);
     }
   }, [searchTerm, cryptoList?.data?.coins]);
 
   function handleSearchCryptos(searchText: string) {
-    const filteredData = cryptoList?.data?.coins.filter((item: any) =>
+    const filteredData = cryptoList?.data?.coins.filter((item: Currency) =>
       item.name.toLowerCase().includes(searchText)
     );
 
@@ -46,43 +54,47 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   }
 
   return (
-    <div className="gradient-bg-welcome huge-space">
-      {!simplified && (
-        <div className="search-crypto">
-          <Input
-            className="search-input"
-            placeholder="Search Cryptocurrency"
-            onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
-          />
-        </div>
-      )}
+    <div className="gradient-bg-welcome">
+      <div className="container">
+        {!simplified && (
+          <div className="search-crypto">
+            <Input
+              className="search-input"
+              placeholder="Search Cryptocurrency"
+              onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+            />
+          </div>
+        )}
 
-      {/* we can provide one more option to display data in table or grid,
+        {/* we can provide one more option to display data in table or grid,
                  do pagination for this page */}
-      <Row gutter={[32, 32]} className="crypto-card-container">
-        {cryptos?.map((currency: any) => (
-          <Col
-            xs={24}
-            sm={12}
-            lg={6}
-            className="crypto-card"
-            key={currency.uuid}
-          >
-            <Link to={`/crypto/${currency.uuid}`}>
-              <Card
-                title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="crypto-image" src={currency.iconUrl} />}
-                hoverable
-                className="gradient-bg-welcome"
-              >
-                <p>Price: {millify(currency.price)}</p>
-                <p>Market Cap: {millify(currency.marketCap)}</p>
-                <p>Daily Change: {currency.change}%</p>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
+        <Row gutter={[32, 32]} className="crypto-card-container">
+          {cryptos?.map((currency: Currency) => (
+            <Col
+              xs={24}
+              sm={12}
+              lg={6}
+              className="crypto-card"
+              key={currency.uuid}
+            >
+              <Link to={`/crypto/${currency.uuid}`}>
+                <Card
+                  title={`${currency.rank}. ${currency.name}`}
+                  extra={
+                    <img className="crypto-image" src={currency.iconUrl} />
+                  }
+                  hoverable
+                  className="gradient-bg-welcome"
+                >
+                  <p>Price: {millify(currency.price)}</p>
+                  <p>Market Cap: {millify(currency.marketCap)}</p>
+                  <p>Daily Change: {currency.change}%</p>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+        </Row>
+      </div>
     </div>
   );
 };

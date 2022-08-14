@@ -23,10 +23,10 @@ export const RightSide = () => {
   const { currentAccount, handleChange, sendTransaction, formData, isLoading } =
     useContext(TransactionContext);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const { addressTo, amount, keyword, message } = formData;
-    if (!addressTo || !amount || !keyword || !message) return;
+    const { addressTo, amount, message } = formData;
+    if (!addressTo || !amount || !message || !currentAccount) return;
 
     sendTransaction();
   };
@@ -66,14 +66,6 @@ export const RightSide = () => {
           className="white-glassmorphism"
         />
         <Input
-          placeholder="Keyword (Gif)"
-          type="text"
-          onChange={(e) => {
-            handleChange(e, "keyword");
-          }}
-          className="white-glassmorphism"
-        />
-        <Input
           placeholder="Enter Message"
           type="text"
           onChange={(e) => {
@@ -82,16 +74,12 @@ export const RightSide = () => {
           className="white-glassmorphism"
         />
 
-        <Divider className="h-[1px] w-full bg-gray-400 my-2" />
+        <Divider />
 
         {isLoading ? (
           <Loader />
         ) : (
-          <SendBtn
-            type="button"
-            onClick={handleSubmit}
-            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
-          >
+          <SendBtn type="button" onClick={handleSubmit}>
             Send now
           </SendBtn>
         )}

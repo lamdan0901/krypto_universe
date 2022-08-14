@@ -1,36 +1,39 @@
-import { LogoWrapper, Logo } from "../Navbar/Navbar.styled";
+import ether_logo from "../../../images/ether_logo.png";
+import { Logo, LogoText, LogoWrapper } from "../Navbar/Navbar.styled";
 import {
-  Wrapper,
+  ContactEmail,
   ContactInfo,
   ContactText,
-  ContactEmail,
-  Divider,
   Copyrights,
   CopyrightsText,
+  Divider,
+  Wrapper,
 } from "./Footer.styled";
 
-import ether_logo from "../../../images/ether_logo.png";
-
 const Footer = () => (
-  <Wrapper className="gradient-bg-footer">
-    <LogoWrapper>
-      <Logo src={ether_logo} alt="logo" style={{ width: "50px" }} />
-    </LogoWrapper>
+  <div className="gradient-bg-footer">
+    <Wrapper>
+      <LogoWrapper>
+        <Logo src={ether_logo} alt="logo" style={{ width: "30px" }} />
+        <LogoText>KryptoUniverse</LogoText>
+      </LogoWrapper>
 
-    <ContactInfo>
-      <ContactText>
-        Come join us and hear for the unexpected miracle
-      </ContactText>
-      <ContactEmail>info@kryptouniverse.com</ContactEmail>
-    </ContactInfo>
+      <ContactInfo>
+        <ContactText>
+          Create transaction, see cryptocurrencies's news, prices and many
+          more...
+        </ContactText>
+        <ContactEmail>info@kryptouniverse.com</ContactEmail>
+      </ContactInfo>
 
-    <Divider />
+      <Divider />
 
-    <Copyrights>
-      <CopyrightsText>@kryptouniverse2022</CopyrightsText>
-      <CopyrightsText>All rights reserved</CopyrightsText>
-    </Copyrights>
-  </Wrapper>
+      <Copyrights>
+        <CopyrightsText>@kryptouniverse2022</CopyrightsText>
+        <CopyrightsText>All rights reserved</CopyrightsText>
+      </Copyrights>
+    </Wrapper>
+  </div>
 );
 
 export default Footer;

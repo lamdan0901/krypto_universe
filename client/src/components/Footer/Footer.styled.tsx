@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  max-width: 1366px;
+  margin: auto;
+  padding: 1rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 1rem;
-  width: 100%;
 `;
 
 export const ContactInfo = styled.div`

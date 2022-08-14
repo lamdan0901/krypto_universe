@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap");
 
 * html {
   padding: 0;
@@ -69,7 +70,7 @@ p {
 }
 
 .blue-glassmorphism {
-  background: rgba(40, 59, 121, 0.4);
+  background: rgba(57, 56, 141, 0.4);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(51, 51, 51, 0.377);
   backdrop-filter: blur(5px);
@@ -83,21 +84,6 @@ p {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.eth-card {
-  background-color: #a099ff;
-  background-image: radial-gradient(
-      at 83% 67%,
-      rgb(152, 231, 156) 0,
-      transparent 58%
-    ),
-    radial-gradient(at 67% 20%, hsla(357, 94%, 71%, 1) 0, transparent 59%),
-    radial-gradient(at 88% 35%, hsla(222, 81%, 65%, 1) 0, transparent 50%),
-    radial-gradient(at 31% 91%, hsla(9, 61%, 61%, 1) 0, transparent 52%),
-    radial-gradient(at 27% 71%, hsla(336, 91%, 65%, 1) 0, transparent 49%),
-    radial-gradient(at 74% 89%, hsla(30, 98%, 65%, 1) 0, transparent 51%),
-    radial-gradient(at 53% 75%, hsla(174, 94%, 68%, 1) 0, transparent 45%);
 }
 
 .text-gradient {
