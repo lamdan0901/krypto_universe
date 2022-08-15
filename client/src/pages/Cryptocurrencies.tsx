@@ -6,6 +6,7 @@ import millify from "millify";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
+import Pagination from "../components/Pagination";
 
 export interface Currency {
   uuid: string;
@@ -29,7 +30,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(10);
+  const [cardsPerPage] = useState(16);
 
   useEffect(() => {
     if (searchTerm !== "") {
@@ -47,14 +48,12 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
     setCryptos(filteredData);
   }
 
-  //https://github.com/bradtraversy/simple_react_pagination/blob/master/src/App.js
+  // pagination
 
-  // Get current posts
   const indexOfLastPost = currentPage * cardsPerPage;
   const indexOfFirstPost = indexOfLastPost - cardsPerPage;
   const currentCryptos = cryptos?.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (isFetching) return <Loader />;
@@ -80,7 +79,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
         )}
 
         <Row gutter={[32, 32]} className="crypto-card-container">
-          {cryptos?.map((currency: Currency) => (
+          {currentCryptos?.map((currency: Currency) => (
             <Col
               xs={24}
               sm={12}
@@ -97,7 +96,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
                   hoverable
                   className="gradient-bg-welcome"
                 >
-                  <p>Price: {millify(currency.price)}</p>
+                  <p>Price: ${millify(currency.price)}</p>
                   <p>Market Cap: {millify(currency.marketCap)}</p>
                   <p>Daily Change: {currency.change}%</p>
                 </Card>
@@ -105,6 +104,12 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
             </Col>
           ))}
         </Row>
+        <Pagination
+          cardsPerPage={cardsPerPage}
+          totalPosts={cryptos?.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
