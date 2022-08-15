@@ -10,6 +10,18 @@
   box-sizing: border-box;
 }
 
+a:hover {
+  color: #fff;
+}
+
+.active-link {
+  color: #fff;
+}
+
+.error-msg {
+  color: red;
+}
+
 .loader {
   height: 81vh;
   display: flex;
@@ -255,8 +267,36 @@
   align-items: center;
 }
 
-.error-msg {
-  color: red;
+ul.crypto-pagination {
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+  margin: 30px auto;
+  flex-wrap: wrap;
+}
+
+li.page-item {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 3px;
+  border: 1px solid #0071bd;
+  background-color: #0e3550d2;
+}
+li.page-item:first-child {
+  border-radius: 8px 0 0 8px;
+}
+li.page-item:last-child {
+  border-radius: 0 8px 8px 0;
+}
+li.page-item:hover {
+  background-color: #0e355070;
+}
+li.page-item.disabled {
+  pointer-events: none;
+  border: 1px solid #005186;
+  color: #bbb;
 }
 
 /* Styles overriding */
@@ -289,6 +329,10 @@
 .ant-table {
   background: rgba(31, 28, 47, 0.468) !important;
   border-radius: 10px;
+}
+
+.active-link {
+  color: #fff;
 }
 
 .ant-table-thead > tr > th {

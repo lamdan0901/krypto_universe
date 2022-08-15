@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   padding: 0.75rem;
-  background-color: #181918;
+  background-color: rgba(44, 41, 57, 0.562);
   border-radius: 0.375rem;
   flex-direction: column;
   flex: 1 1 0%;

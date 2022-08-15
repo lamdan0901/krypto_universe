@@ -6,6 +6,7 @@ import millify from "millify";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
+import Pagination from "../components/Pagination";
 
 export interface Currency {
   uuid: string;
@@ -28,6 +29,9 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage] = useState(16);
+
   useEffect(() => {
     if (searchTerm !== "") {
       debouncedSearch(searchTerm);
@@ -43,6 +47,14 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
 
     setCryptos(filteredData);
   }
+
+  // pagination
+
+  const indexOfLastPost = currentPage * cardsPerPage;
+  const indexOfFirstPost = indexOfLastPost - cardsPerPage;
+  const currentCryptos = cryptos?.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (isFetching) return <Loader />;
   if (isError) {
@@ -66,10 +78,8 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
           </div>
         )}
 
-        {/* we can provide one more option to display data in table or grid,
-                 do pagination for this page */}
         <Row gutter={[32, 32]} className="crypto-card-container">
-          {cryptos?.map((currency: Currency) => (
+          {currentCryptos?.map((currency: Currency) => (
             <Col
               xs={24}
               sm={12}
@@ -86,7 +96,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
                   hoverable
                   className="gradient-bg-welcome"
                 >
-                  <p>Price: {millify(currency.price)}</p>
+                  <p>Price: ${millify(currency.price)}</p>
                   <p>Market Cap: {millify(currency.marketCap)}</p>
                   <p>Daily Change: {currency.change}%</p>
                 </Card>
@@ -94,6 +104,12 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
             </Col>
           ))}
         </Row>
+        <Pagination
+          cardsPerPage={cardsPerPage}
+          totalPosts={cryptos?.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
