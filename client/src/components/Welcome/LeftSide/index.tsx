@@ -26,7 +26,7 @@ export const LeftSide = () => {
       {!currentAccount && (
         <ConnectBtn type="button" onClick={connectWallet}>
           <AiFillPlayCircle color="#fff" />
-          <ConnectBtnText>Connect Metamask Wallet</ConnectBtnText>
+          <ConnectBtnText>Connect Wallet</ConnectBtnText>
         </ConnectBtn>
       )}
     </Wrapper>

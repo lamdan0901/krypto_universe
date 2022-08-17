@@ -290,6 +290,7 @@ li.page-item:hover {
 li.page-item.disabled {
   pointer-events: none;
   border: 1px solid #0099ff;
+  background-color: #117ac5a6;
   color: #bbb;
 }
 

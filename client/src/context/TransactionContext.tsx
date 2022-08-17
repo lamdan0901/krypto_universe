@@ -91,7 +91,10 @@ export const TransactionsProvider = ({ children }: any) => {
 
   const checkIfWalletIsConnect = async () => {
     try {
-      if (!ethereum) return alert("Please install MetaMask.");
+      if (!ethereum)
+        return alert(
+          "Please install MetaMask or any wallet that supports Ethereum!"
+        );
 
       const accounts = await ethereum.request({ method: "eth_accounts" });
 

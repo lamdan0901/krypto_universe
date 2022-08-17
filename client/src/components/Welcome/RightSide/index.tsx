@@ -26,7 +26,7 @@ export const RightSide = () => {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const { addressTo, amount, message } = formData;
-    if (!addressTo || !amount || !message || !currentAccount) return;
+    if (!addressTo || !amount || !message) return;
 
     sendTransaction();
   };
