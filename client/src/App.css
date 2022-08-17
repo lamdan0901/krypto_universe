@@ -276,26 +276,20 @@ ul.crypto-pagination {
 }
 
 li.page-item {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   text-align: center;
-  padding-top: 3px;
-  border: 1px solid #0071bd;
-  background-color: #0e3550d2;
-}
-li.page-item:first-child {
-  border-radius: 8px 0 0 8px;
-}
-li.page-item:last-child {
-  border-radius: 0 8px 8px 0;
+  padding-top: 6px;
+  background-color: #0b446db4;
+  border-radius: 99px;
 }
 li.page-item:hover {
-  background-color: #0e355070;
+  background-color: #117ac5a6;
 }
 li.page-item.disabled {
   pointer-events: none;
-  border: 1px solid #005186;
+  border: 1px solid #0099ff;
   color: #bbb;
 }
 
