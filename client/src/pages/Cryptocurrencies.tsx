@@ -54,7 +54,14 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   const indexOfFirstPost = indexOfLastPost - cardsPerPage;
   const currentCryptos = cryptos?.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 120,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
 
   if (isFetching) return <Loader />;
   if (isError) {
