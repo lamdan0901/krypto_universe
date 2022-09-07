@@ -10,7 +10,7 @@ const createRequest = (url: string) => ({ url, headers: cryptoNewsHeaders });
 
 export const cryptoNewsApi = createApi({
   reducerPath: "cryptoNewsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_NEWS_API_URL as string }), //process.env.REACT_APP_NEWS_API_URL
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_NEWS_API_URL as string }),
   endpoints: (builder) => ({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) =>
