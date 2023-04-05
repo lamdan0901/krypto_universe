@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { SiEthereum } from "react-icons/si";
 
-import { TransactionContext } from "../../../context/TransactionContext";
-import { shortenAddress } from "../../../utils/shortenAddress";
-import Loader from "../../Loader";
+import { Loader } from "../../../../components";
+import { TransactionContext } from "../../../../context/TransactionContext";
+import { shortenAddress } from "../../../../utils/shortenAddress";
+
 import {
   AccountInfoContainer,
   AccountInfoWrapper,
