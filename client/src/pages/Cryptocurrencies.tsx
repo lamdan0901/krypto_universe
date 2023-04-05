@@ -91,13 +91,17 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
             <Row gutter={[32, 32]} className="crypto-card-container">
               {currentCryptos?.map((currency: Currency) => (
                 <Col
-                  xs={24}
-                  sm={12}
-                  lg={6}
+                  sm={24}
+                  md={12}
+                  lg={8}
+                  xxl={6}
                   className="crypto-card"
                   key={currency.uuid}
                 >
-                  <Link to={`/crypto/${currency.uuid}`}>
+                  <Link
+                    to={`/crypto/${currency.uuid}`}
+                    className="crypto-card-wrapper"
+                  >
                     <Card
                       title={`${currency.rank}. ${
                         currency.name.length > 16
@@ -127,7 +131,7 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
                         </div>
 
                         <MyRecordChart
-                          width={155}
+                          width={140}
                           height={70}
                           isDownTrend={+currency.change < 0}
                           labels={Array(11).fill("")}

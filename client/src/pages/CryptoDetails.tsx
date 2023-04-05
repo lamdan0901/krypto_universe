@@ -137,7 +137,7 @@ const CryptoDetails = () => {
         <div className="select-time-period">
           <Select
             className="select-element"
-            defaultValue="7d"
+            defaultValue="24h"
             placeholder="Select Time Period"
             onChange={(value) => setTimePeriod(value)}
           >

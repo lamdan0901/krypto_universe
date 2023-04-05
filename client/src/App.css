@@ -45,11 +45,6 @@ p.error-msg {
   padding: 0;
 }
 
-.crypto-card {
-  display: flex;
-  width: 100%;
-}
-
 .coin-heading-container {
   display: flex;
   justify-content: center;
@@ -277,11 +272,14 @@ p.error-msg {
   min-height: 65vh !important;
   margin-top: 16px;
   margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
 }
 .crypto-card {
-  min-width: 250px;
+  display: flex;
+  width: 100%;
+}
+.crypto-card-wrapper {
+  width: fit-content;
+  margin: 0 auto;
 }
 .crypto-card .crypto-image {
   width: 35px;
