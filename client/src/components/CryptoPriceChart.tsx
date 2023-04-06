@@ -5,6 +5,7 @@ import type { ChartData, ChartArea } from "chart.js";
 import {
   Chart as ChartJS,
   CategoryScale,
+  ChartOptions,
   LinearScale,
   PointElement,
   LineElement,
@@ -41,7 +42,7 @@ interface CryptoPriceChartProps {
   timePeriod: string;
 }
 
-const stepPeriod: any = {
+const stepPeriod: Record<string, number> = {
   "3h": 3,
   "24h": 4,
   "7d": 3,
@@ -59,9 +60,13 @@ const CryptoPriceChart = ({
   timePeriod,
 }: CryptoPriceChartProps) => {
   const chartRef = useRef<ChartJS>(null);
+  const [ChartData, setChartData] = useState<ChartData<"bar">>({
+    datasets: [],
+  });
 
   const coinPrice: number[] = [];
   const coinTimestamps: string[] = [];
+  const isPriceDown = +coinHistory?.data?.change < 0;
 
   for (
     let i = 0;
@@ -83,20 +88,28 @@ const CryptoPriceChart = ({
     );
   }
 
-  const [ChartData, setChartData] = useState<ChartData<"bar">>({
-    datasets: [],
-  });
-
   const createGradient = (ctx: CanvasRenderingContext2D, area: ChartArea) => {
     const gradient = ctx.createLinearGradient(0, area.top, 0, area.bottom);
-    gradient?.addColorStop(0.25, "rgba(144, 41, 63, 0.7)");
-    gradient?.addColorStop(0.4, "rgba(176, 76, 76, 0.4)");
-    gradient?.addColorStop(0.7, "rgba(201, 91, 91, 0.35)");
-    gradient?.addColorStop(0.9, "rgba(195, 102, 102, 0.2)");
+    gradient?.addColorStop(
+      0.25,
+      isPriceDown ? "rgba(144, 41, 63, 0.7)" : "rgba(67, 255, 100, 0.7)"
+    );
+    gradient?.addColorStop(
+      0.4,
+      isPriceDown ? "rgba(144, 41, 63, 0.5)" : "rgba(67, 255, 100, 0.5)"
+    );
+    gradient?.addColorStop(
+      0.7,
+      isPriceDown ? "rgba(144, 41, 63, 0.35)" : "rgba(67, 255, 100, 0.3)"
+    );
+    gradient?.addColorStop(
+      0.9,
+      isPriceDown ? "rgba(144, 41, 63, 0.2)" : "rgba(67, 255, 100, 0.1)"
+    );
     return gradient;
   };
 
-  const options = {
+  const options: ChartOptions = {
     plugins: {
       legend: {
         display: false,
@@ -120,9 +133,9 @@ const CryptoPriceChart = ({
         {
           label: "",
           data: coinPrice.reverse(),
-          borderColor: "#c01739",
+          borderColor: isPriceDown ? "#c01739" : "#43ff64",
           backgroundColor: createGradient(chart.ctx, chart.chartArea),
-          tension: 0.4,
+          tension: 0.1,
           fill: true,
         },
       ],

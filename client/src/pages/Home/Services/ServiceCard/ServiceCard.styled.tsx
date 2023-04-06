@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 
 interface IconProps {
-  bgColor: string
+  bgColor: string;
 }
 
 export const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   padding: 0.75rem;
+  gap: 0.75rem;
   justify-content: flex-start;
-  align-items: flex-start;
   flex-direction: row;
   cursor: pointer;
   margin: 0.5rem;
@@ -29,16 +30,14 @@ export const Icon = styled.div<IconProps>`
 `;
 
 export const TextWrapper = styled.div`
+  display: flex;
   flex-direction: column;
   flex: 1 1 0%;
-  display: flex;
-  margin-left: 1.25rem;
 `;
 
 export const Title = styled.h3`
   font-size: 1.125rem;
   line-height: 1.75rem;
-  margin-top: 0.5rem;
   color: #fff;
 `;
 
@@ -48,6 +47,6 @@ export const SubTitle = styled.p`
   margin-top: 0.25rem;
 
   @media (min-width: 768px) {
-    width: 75%;
+    width: 85%;
   }
 `;
