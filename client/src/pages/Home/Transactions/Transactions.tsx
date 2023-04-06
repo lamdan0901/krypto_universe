@@ -1,8 +1,6 @@
 import { Table } from "antd";
 import { useContext, useEffect, useState } from "react";
 
-import { TransactionContext } from "../../context/TransactionContext";
-import dummyData from "../../utils/dummyData";
 import {
   Container,
   Heading,
@@ -12,7 +10,9 @@ import {
 import { TransactionsCard } from "./TransactionsCard/TransactionsCard";
 
 import type { ColumnsType } from "antd/es/table";
-import { shortenAddress } from "../../utils/shortenAddress";
+import { TransactionContext } from "../../../context/TransactionContext";
+import { shortenAddress } from "../../../utils/shortenAddress";
+
 interface TransactionInfo {
   addressTo: string;
   addressFrom: string;
@@ -21,6 +21,18 @@ interface TransactionInfo {
   keyword?: string;
   amount: string;
 }
+
+const dummyTransactions = Array(6)
+  .fill(0)
+  .map((_, i) => ({
+    id: i,
+    key: i,
+    message: "this is testing data",
+    timestamp: new Date().toLocaleString(),
+    addressFrom: "0xCF8e569A97C423952DdFf902375C7C76549A6A90",
+    amount: "0.01",
+    addressTo: "0x8aa395Ab97837576aF9cd6946C79024ef1acfdbE",
+  }));
 
 const Transactions = () => {
   const { transactions, currentAccount } = useContext(TransactionContext);
@@ -103,13 +115,13 @@ const Transactions = () => {
         {transactionsDisplayType ? (
           <Table
             columns={columns}
-            dataSource={[...transactions, ...dummyData]}
+            dataSource={[...transactions, ...dummyTransactions]}
             bordered
           />
         ) : (
           <TransactionsCards>
-            {[...transactions, ...dummyData].map((transaction, i) => (
-              <TransactionsCard key={i} {...transaction} />
+            {[...transactions, ...dummyTransactions].map((transaction) => (
+              <TransactionsCard {...transaction} />
             ))}
           </TransactionsCards>
         )}

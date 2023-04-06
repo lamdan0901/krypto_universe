@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import { Col, Row, Typography, Select } from "antd";
 import millify from "millify";
+import { useState } from "react";
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -18,12 +19,11 @@ import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
-import Loader from "./Loader";
-import CryptoPriceChart from "../components/CryptoPriceChart";
-import { useState } from "react";
+import { CryptoPriceChart, Loader } from "../components";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
+const MAX_INT = Math.pow(2, 53);
 
 interface CryptoLink {
   url: string;
@@ -33,17 +33,15 @@ interface CryptoLink {
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timePeriod, setTimePeriod] = useState("7d");
-  const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const [timePeriod, setTimePeriod] = useState("24h");
+  const { data: crypto, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
     coinId,
     timePeriod,
   });
-  const cryptoDetails = data?.data?.coin;
+  const cryptoDetails = crypto?.data?.coin;
 
-  if (isFetching) return <Loader />;
-
-  const time = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
+  const timePeriods = ["3h", "24h", "7d", "30d", "3m", "1y", "3y", "5y"];
 
   const stats = [
     {
@@ -67,7 +65,7 @@ const CryptoDetails = () => {
       icon: <DollarCircleOutlined />,
     },
     {
-      title: "All-time-high(daily avg.)",
+      title: "All-time-high (daily avg.)",
       value: `$ ${
         cryptoDetails?.allTimeHigh?.price &&
         millify(cryptoDetails?.allTimeHigh?.price)
@@ -99,7 +97,9 @@ const CryptoDetails = () => {
     {
       title: "Total Supply",
       value: `$ ${
-        cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)
+        cryptoDetails?.supply?.total && cryptoDetails?.supply?.total < MAX_INT
+          ? millify(cryptoDetails?.supply?.total)
+          : cryptoDetails?.supply?.total
       }`,
       icon: <ExclamationCircleOutlined />,
     },
@@ -107,21 +107,29 @@ const CryptoDetails = () => {
       title: "Circulating Supply",
       value: `$ ${
         cryptoDetails?.supply?.circulating &&
-        millify(cryptoDetails?.supply?.circulating)
+        cryptoDetails?.supply?.circulating < MAX_INT
+          ? millify(cryptoDetails?.supply?.circulating)
+          : cryptoDetails?.supply?.circulating
       }`,
       icon: <ExclamationCircleOutlined />,
     },
   ];
+
+  if (isFetching) return <Loader />;
 
   return (
     <div className="gradient-bg-welcome">
       <Col className="container">
         <Col className="coin-heading-container">
           <Title level={2} className="coin-name">
-            {data?.data?.coin.name} ({data?.data?.coin.symbol}) Price
+            {cryptoDetails?.name}{" "}
+            {cryptoDetails?.name !== cryptoDetails?.symbol
+              ? `(${cryptoDetails?.symbol})`
+              : ""}{" "}
+            Price
           </Title>
           <p>
-            {cryptoDetails.name} live price in US Dollar (USD). View value
+            {cryptoDetails?.name} newest price in US Dollar (USD). View value
             statistics, market cap and supply.
           </p>
         </Col>
@@ -129,12 +137,12 @@ const CryptoDetails = () => {
         <div className="select-time-period">
           <Select
             className="select-element"
-            defaultValue="7d"
+            defaultValue="24h"
             placeholder="Select Time Period"
             onChange={(value) => setTimePeriod(value)}
           >
-            {time.map((date) => (
-              <Option key={date}>{date}</Option>
+            {timePeriods.map((period) => (
+              <Option key={period}>{period}</Option>
             ))}
           </Select>
         </div>
@@ -162,7 +170,9 @@ const CryptoDetails = () => {
                   <Text>{icon}</Text>
                   <Text>{title}</Text>
                 </Col>
-                <Text className="stats">{value}</Text>
+                <Text className="stats">
+                  {value === "$ null" ? "No data" : value}
+                </Text>
               </Col>
             ))}
           </Col>
@@ -182,7 +192,9 @@ const CryptoDetails = () => {
                   <Text>{icon}</Text>
                   <Text>{title}</Text>
                 </Col>
-                <Text className="stats">{value}</Text>
+                <Text className="stats">
+                  {value === "$ null" ? "No data" : value}
+                </Text>
               </Col>
             ))}
           </Col>

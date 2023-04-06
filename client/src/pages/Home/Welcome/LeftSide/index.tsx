@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 
-import { TransactionContext } from "../../../context/TransactionContext";
+import { TransactionContext } from "../../../../context/TransactionContext";
 import {
   ConnectBtn,
   ConnectBtnText,

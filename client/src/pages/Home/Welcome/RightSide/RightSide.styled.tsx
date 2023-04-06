@@ -74,6 +74,10 @@ export const Form = styled.div`
   justify-content: flex-start;
   width: 100%;
   padding: 1.25rem;
+  border: 1px solid #505052;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(15px);
+  background-color: #52516c05;
 
   @media (min-width: 640px) {
     width: 24rem;
@@ -84,11 +88,11 @@ export const Input = styled.input`
   font-size: 0.875rem;
   line-height: 1.25rem;
   padding: 0.5rem;
-  background-color: transparent;
+  background-color: #2c274193;
   border-style: none;
   outline: none;
   color: #fff;
-  border-radius: 0.125rem;
+  border-radius: 0.25rem;
   width: 100%;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -110,7 +114,7 @@ export const SendBtn = styled.button`
   width: 100%;
   margin-top: 0.5rem;
 
-  &:hover{
+  &:hover {
     background-color: #3d4f7c;
   }
 `;
