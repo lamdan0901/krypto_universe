@@ -37,7 +37,6 @@ const MyRecordChart = ({
   height,
 }: MyRecordChartProps) => {
   const chartRef = useRef<ChartJS>(null);
-
   const [ChartData, setChartData] = useState<ChartData<"bar">>({
     datasets: [],
   });

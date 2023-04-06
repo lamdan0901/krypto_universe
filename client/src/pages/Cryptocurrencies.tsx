@@ -53,8 +53,10 @@ const Cryptocurrencies = ({ simplified }: CryptocurrenciesProps) => {
   }, [searchTerm, cryptoList?.data?.coins]);
 
   function handleSearchCryptos(searchText: string) {
-    const filteredData = cryptoList?.data?.coins.filter((item: Currency) =>
-      item.name.toLowerCase().includes(searchText)
+    const filteredData = cryptoList?.data?.coins.filter(
+      (currency: Currency) =>
+        currency.name.toLowerCase().includes(searchText) ||
+        currency.symbol.toLowerCase().includes(searchText)
     );
 
     setCryptos(filteredData);

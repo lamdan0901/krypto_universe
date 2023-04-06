@@ -26,8 +26,8 @@ export const RightSide = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const { addressTo, amount, message } = formData;
-    if (!addressTo || !amount || !message) return;
+    const { addressTo, amount } = formData;
+    if (!addressTo || !amount) return;
 
     sendTransaction();
   };
@@ -49,7 +49,7 @@ export const RightSide = () => {
         </AccountInfoContainer>
       </AccountInfoWrapper>
 
-      <Form className="blue-glassmorphism">
+      <Form>
         <Input
           placeholder="Address To"
           type="text"

@@ -65,7 +65,7 @@ const CryptoDetails = () => {
       icon: <DollarCircleOutlined />,
     },
     {
-      title: "All-time-high(daily avg.)",
+      title: "All-time-high (daily avg.)",
       value: `$ ${
         cryptoDetails?.allTimeHigh?.price &&
         millify(cryptoDetails?.allTimeHigh?.price)
@@ -170,7 +170,9 @@ const CryptoDetails = () => {
                   <Text>{icon}</Text>
                   <Text>{title}</Text>
                 </Col>
-                <Text className="stats">{value}</Text>
+                <Text className="stats">
+                  {value === "$ null" ? "No data" : value}
+                </Text>
               </Col>
             ))}
           </Col>
@@ -190,7 +192,9 @@ const CryptoDetails = () => {
                   <Text>{icon}</Text>
                   <Text>{title}</Text>
                 </Col>
-                <Text className="stats">{value}</Text>
+                <Text className="stats">
+                  {value === "$ null" ? "No data" : value}
+                </Text>
               </Col>
             ))}
           </Col>
