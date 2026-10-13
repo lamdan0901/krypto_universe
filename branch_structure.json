@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "fix-routing",
+    "main",
+    "style/navbar"
+  ],
+  "parent": {
+    "fix-routing": "main",
+    "main": null,
+    "style/navbar": "main"
+  },
+  "order": [
+    "main",
+    "fix-routing",
+    "style/navbar"
+  ]
+}
